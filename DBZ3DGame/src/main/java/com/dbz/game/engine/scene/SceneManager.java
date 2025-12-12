@@ -1,22 +1,29 @@
 package com.dbz.game.engine.scene;
 
 import com.dbz.game.engine.input.InputManager;
+import com.dbz.game.gameplay.FightScene;
 
 public class SceneManager {
 
-    private Object currentScene;
+    private FightScene currentScene;
 
     public void loadInitialScene() {
-        currentScene = new Object(); // cambiar luego
+        currentScene = new FightScene();
     }
 
     public void update(float dt, InputManager input) {
-        // update escena
+        if (currentScene != null) {
+            currentScene.update(dt, input);
+        }
     }
 
-    public Object getCurrentScene() {
+    public FightScene getCurrentScene() {
         return currentScene;
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+        if (currentScene != null) {
+            currentScene.cleanup();
+        }
+    }
 }
